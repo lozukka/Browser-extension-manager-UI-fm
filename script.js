@@ -22,6 +22,7 @@ async function fetchExtensions() {
 }
 function renderExtension(logo, name, description, isActive) {
   console.log(logo, name, description, isActive);
+
   const extensionDiv = document.createElement("div");
   extensionDiv.classList.add("extension");
   extensionDiv.innerHTML = `
@@ -37,7 +38,7 @@ function renderExtension(logo, name, description, isActive) {
           <div class="buttons">
             <button class="remove-btn">Remove</button>
             <label class="switch">
-              <input type="checkbox" />
+              <input type="checkbox" checked/>
               <span class="slider round"></span>
             </label>
           </div>

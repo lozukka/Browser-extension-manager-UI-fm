@@ -127,6 +127,11 @@
     border-radius: 20px;
     padding: 0.5rem 0.7rem;
     border: 1px solid grey;
+    cursor: pointer;
+  }
+  .remove-btn:hover {
+    background: red;
+    color: white;
   }
   /* The switch - the box around the slider */
   .switch {
