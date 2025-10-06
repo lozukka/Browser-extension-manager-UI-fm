@@ -104,13 +104,29 @@
     border-radius: 12px;
     display: flex;
     flex-direction: column;
+    max-width: 375px;
+    gap: 1rem;
   }
   .extension__details {
     display: flex;
+    gap: 1rem;
+  }
+  .extension__name {
+    font-size: 1.2rem;
+    margin-block: 0.3rem;
+  }
+  .extension__description {
+    color: grey;
   }
   .buttons {
     display: flex;
     justify-content: space-between;
+  }
+  .remove-btn {
+    background: white;
+    border-radius: 20px;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid grey;
   }
   /* The switch - the box around the slider */
   .switch {
