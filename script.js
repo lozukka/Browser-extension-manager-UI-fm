@@ -22,7 +22,26 @@ async function fetchExtensions() {
 }
 function renderExtension(logo, name, description, isActive) {
   console.log(logo, name, description, isActive);
-
+  const checked = document.createElement("div");
+  if (isActive === true) {
+    checked.classList.add("buttons");
+    checked.innerHTML = `
+    <button class="remove-btn">Remove</button>
+            <label class="switch">
+    <input type="checkbox" checked />
+    <span class="slider round"></span>
+            </label>
+    `;
+  } else {
+    checked.classList.add("buttons");
+    checked.innerHTML = `
+    <button class="remove-btn">Remove</button>
+            <label class="switch">
+    <input type="checkbox" />
+    <span class="slider round"></span>
+            </label>
+    `;
+  }
   const extensionDiv = document.createElement("div");
   extensionDiv.classList.add("extension");
   extensionDiv.innerHTML = `
@@ -35,14 +54,8 @@ function renderExtension(logo, name, description, isActive) {
               </p>
             </div>
           </div>
-          <div class="buttons">
-            <button class="remove-btn">Remove</button>
-            <label class="switch">
-              <input type="checkbox" checked/>
-              <span class="slider round"></span>
-            </label>
-          </div>
         `;
+  extensionDiv.appendChild(checked);
   extensionList.appendChild(extensionDiv);
 }
 window.addEventListener("load", getExtensions);
