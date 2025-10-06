@@ -22,40 +22,29 @@ async function fetchExtensions() {
 }
 function renderExtension(logo, name, description, isActive) {
   console.log(logo, name, description, isActive);
-  const checked = document.createElement("div");
-  if (isActive === true) {
-    checked.classList.add("buttons");
-    checked.innerHTML = `
-    <button class="remove-btn">Remove</button>
-            <label class="switch">
-    <input type="checkbox" checked />
-    <span class="slider round"></span>
-            </label>
-    `;
-  } else {
-    checked.classList.add("buttons");
-    checked.innerHTML = `
-    <button class="remove-btn">Remove</button>
-            <label class="switch">
-    <input type="checkbox" />
-    <span class="slider round"></span>
-            </label>
-    `;
-  }
+
   const extensionDiv = document.createElement("div");
-  extensionDiv.classList.add("extension");
+  extensionDiv.className = "extension";
+
+  // Käytetään template stringiä ja ternary-operaattoria
   extensionDiv.innerHTML = `
-          <div class="extension__details">
-            <img src="${logo}" alt="" />
-            <div class="extension__text">
-              <h2 class="extension__name">${name}</h2>
-              <p class="extension__description">
-                ${description}
-              </p>
-            </div>
-          </div>
-        `;
-  extensionDiv.appendChild(checked);
+    <div class="extension__details">
+      <img src="${logo}" alt="${name} logo" />
+      <div class="extension__text">
+        <h2 class="extension__name">${name}</h2>
+        <p class="extension__description">${description}</p>
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="remove-btn">Remove</button>
+      <label class="switch">
+        <input type="checkbox" ${isActive ? "checked" : ""} />
+        <span class="slider round"></span>
+      </label>
+    </div>
+  `;
+
   extensionList.appendChild(extensionDiv);
 }
+
 window.addEventListener("load", getExtensions);
