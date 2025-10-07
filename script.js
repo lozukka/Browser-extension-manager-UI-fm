@@ -21,8 +21,6 @@ async function fetchExtensions() {
   }
 }
 function renderExtension(logo, name, description, isActive) {
-  console.log(logo, name, description, isActive);
-
   const extensionDiv = document.createElement("div");
   extensionDiv.className = "extension";
 
