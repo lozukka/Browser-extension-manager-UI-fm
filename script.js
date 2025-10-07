@@ -54,6 +54,7 @@ const inactiveBtn = document.getElementById("inactive-btn");
 allBtn.addEventListener("click", (event) => {
   emptyExtensionList();
   getExtensions();
+  setFilter("all");
 });
 activeBtn.addEventListener("click", (event) => {
   emptyExtensionList();
@@ -63,6 +64,7 @@ activeBtn.addEventListener("click", (event) => {
       renderExtension(logo, name, description, isActive);
     }
   });
+  setFilter("active");
 });
 inactiveBtn.addEventListener("click", (event) => {
   emptyExtensionList();
@@ -72,7 +74,35 @@ inactiveBtn.addEventListener("click", (event) => {
       renderExtension(logo, name, description, isActive);
     }
   });
+  setFilter("inactive");
 });
+function setFilter(state) {
+  switch (state) {
+    case "all":
+      setIsActiveClass(allBtn);
+      removeIsActiveClass(activeBtn);
+      removeIsActiveClass(inactiveBtn);
+      break;
+    case "active":
+      setIsActiveClass(activeBtn);
+      removeIsActiveClass(allBtn);
+      removeIsActiveClass(inactiveBtn);
+      break;
+    case "inactive":
+      setIsActiveClass(inactiveBtn);
+      removeIsActiveClass(activeBtn);
+      removeIsActiveClass(allBtn);
+      break;
+  }
+}
+
+function setIsActiveClass(element) {
+  element.classList.add("active-filter");
+}
+
+function removeIsActiveClass(element) {
+  element.classList.remove("active-filter");
+}
 
 function emptyExtensionList() {
   extensionList.innerHTML = "";
