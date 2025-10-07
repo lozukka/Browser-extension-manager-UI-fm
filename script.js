@@ -1,6 +1,7 @@
+//------EXTENSIONS LIST----------
 const extensionList = document.getElementById("extensions-list");
-
 let extensions = [];
+
 async function getExtensions() {
   extensions = await fetchExtensions();
 
@@ -24,7 +25,6 @@ function renderExtension(logo, name, description, isActive) {
   const extensionDiv = document.createElement("div");
   extensionDiv.className = "extension";
 
-  // Käytetään template stringiä ja ternary-operaattoria
   extensionDiv.innerHTML = `
     <div class="extension__details">
       <img src="${logo}" alt="${name} logo" />
@@ -46,8 +46,38 @@ function renderExtension(logo, name, description, isActive) {
 }
 
 window.addEventListener("load", getExtensions);
+//------EXTENSIONS FILTER----------
+const allBtn = document.getElementById("all-btn");
+const activeBtn = document.getElementById("active-btn");
+const inactiveBtn = document.getElementById("inactive-btn");
 
-//theme switcher
+allBtn.addEventListener("click", (event) => {
+  emptyExtensionList();
+  getExtensions();
+});
+activeBtn.addEventListener("click", (event) => {
+  emptyExtensionList();
+  extensions.forEach((extension) => {
+    const { logo, name, description, isActive } = extension;
+    if (isActive === true) {
+      renderExtension(logo, name, description, isActive);
+    }
+  });
+});
+inactiveBtn.addEventListener("click", (event) => {
+  emptyExtensionList();
+  extensions.forEach((extension) => {
+    const { logo, name, description, isActive } = extension;
+    if (isActive === false) {
+      renderExtension(logo, name, description, isActive);
+    }
+  });
+});
+
+function emptyExtensionList() {
+  extensionList.innerHTML = "";
+}
+//--------THEME SWITCHER-----------
 /**
  * Utility function to calculate the current theme setting.
  * Look for a local storage value.
