@@ -37,7 +37,9 @@ function renderExtension(logo, name, description, isActive) {
     <div class="buttons">
       <button class="remove-btn">Remove</button>
       <label class="switch">
-        <input type="checkbox" ${isActive ? "checked" : ""} />
+        <input type="checkbox" class="toggle-input" ${
+          isActive ? "checked" : ""
+        } />
         <span class="slider round"></span>
       </label>
     </div>
@@ -56,17 +58,34 @@ window.addEventListener("load", getExtensions);
 
 document.addEventListener("click", (e) => {
   const removeButton = e.target.closest(".remove-btn");
-  const toggleSwitcher = e.target.closest(".slider");
-  //if (!removeButton) return;
+  if (!removeButton) return;
   if (removeButton) {
     const removeExtension = removeButton.closest(".extension");
     removeExtension.remove();
   }
-  if (toggleSwitcher) {
-    const switchExtension = toggleSwitcher.closest(".extension");
-    switchExtension.isActive ? true : false;
-    console.log(switchExtension);
-  }
+});
+document.addEventListener("change", (e) => {
+  const toggle = e.target.closest(".toggle-input");
+  if (!toggle) return; // ei ollut toggle
+
+  const extension = toggle.closest(".extension");
+  if (!extension) return;
+
+  // tila checkboxin mukaan
+  const isActive = toggle.checked;
+
+  // Tallenna tila DOM:iin (jos haluat käyttää myöhemmin)
+  extension.dataset.active = isActive ? "true" : "false";
+
+  // esim. päivitä visuaalisesti
+  extension.classList.toggle("inactive", !isActive);
+
+  console.log(
+    "Extension",
+    extension,
+    "is now",
+    isActive ? "active" : "inactive"
+  );
 });
 
 //-------------EXTENSIONS FILTER-------------------
