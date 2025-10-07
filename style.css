@@ -31,14 +31,20 @@
     --heading-fg: hsl(227, 75%, 14%);
     --text-fg: hsl(226, 11%, 37%);
     --button-border: hsl(0, 0%, 78%);
-    --theme-button-bg: hsl(0, 0%, 78%);
+    --theme-button-bg: hsl(0, 0%, 93%);
     --theme-button-icon: hsl(226, 25%, 17%);
     --theme-button-hover: hsl(226, 11%, 37%);
     --red: hsl(3, 71%, 56%);
   }
   [data-theme="dark"] {
     --main-bg: linear-gradient(180deg, #040918 0%, #091540 100%);
-    --color-fg: #ffffff;
+    --element-bg: hsl(226, 25%, 17%);
+    --heading-fg: hsl(200, 60%, 99%);
+    --text-fg: hsl(0, 0%, 78%);
+    --button-border: hsl(226, 11%, 37%);
+    --theme-button-bg: hsl(225, 23%, 24%);
+    --theme-button-icon: hsl(200, 60%, 99%);
+    --theme-button-hover: hsl(226, 11%, 37%);
     --red: hsl(3, 86%, 64%);
   }
   :root {
@@ -71,19 +77,17 @@
     margin: 1rem auto;
     border-radius: 12px;
   }
-  #to-light {
-    display: none;
-    padding: 0.5rem;
-    border-radius: 12px;
-    cursor: pointer;
+  #logo path {
+    fill: var(--heading-fg);
   }
-  #to-dark {
+  #theme-switcher {
+    background: var(--theme-button-bg);
     border: none;
     padding: 0.5rem;
     border-radius: 12px;
     cursor: pointer;
   }
-  #to-dark:hover {
+  #theme-switcher:hover {
     background: var(--theme-button-hover);
   }
 }
