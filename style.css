@@ -24,6 +24,30 @@
     src: url("./assets/fonts/noto-sans-v42-latin-700.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
   }
 }
+@layer colors {
+  [data-theme="light"] {
+    --main-bg: linear-gradient(180deg, #ebf2fc 0%, #eef8f9 100%);
+    --element-bg: hsl(200, 60%, 99%);
+    --heading-fg: hsl(227, 75%, 14%);
+    --text-fg: hsl(226, 11%, 37%);
+    --button-border: hsl(0, 0%, 78%);
+    --theme-button-bg: hsl(0, 0%, 78%);
+    --theme-button-icon: hsl(226, 25%, 17%);
+    --theme-button-hover: hsl(226, 11%, 37%);
+    --red: hsl(3, 71%, 56%);
+  }
+  [data-theme="dark"] {
+    --main-bg: linear-gradient(180deg, #040918 0%, #091540 100%);
+    --color-fg: #ffffff;
+    --red: hsl(3, 86%, 64%);
+  }
+  :root {
+    --red-hover: hsl(3, 77%, 44%);
+    --white-hover: hsl(200, 60%, 99%);
+    --toggle-white: hsl(200, 60%, 99%);
+    --toggle-grey: hsl(0, 0%, 78%);
+  }
+}
 @layer global {
   * {
     box-sizing: border-box;
@@ -33,9 +57,7 @@
   body {
     font-family: "Noto Sans", Arial, Helvetica, sans-serif;
     width: 100%;
-  }
-  .light-bg {
-    background: lightgray;
+    background: var(--main-bg);
   }
 }
 @layer header {
@@ -44,7 +66,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: white;
+    background: var(--element-bg);
     padding: 0.4rem;
     margin: 1rem auto;
     border-radius: 12px;
@@ -62,7 +84,7 @@
     cursor: pointer;
   }
   #to-dark:hover {
-    background: darkgray;
+    background: var(--theme-button-hover);
   }
 }
 @layer hero {
@@ -74,18 +96,29 @@
     align-items: center;
     margin: 1.5rem auto;
   }
+  h1 {
+    color: var(--heading-fg);
+    margin-block: 0.5rem;
+  }
   #hero button {
-    border: none;
+    border: 1px solid var(--button-border);
+    font-family: inherit;
     border-radius: 20px;
     cursor: pointer;
     padding: 0.5rem 1rem;
     margin: 0.4rem;
+    background: var(--element-bg);
+    color: var(--heading-fg);
   }
   #hero button:hover {
-    background: red;
+    background: var(--red-hover);
+    border: var(--red-hover);
+    color: var(--white-hover);
   }
   .active-filter {
-    background: red;
+    background: var(--red) !important;
+    border: 1px solid var(--red) !important;
+    color: var(--white-hover) !important;
   }
 }
 @layer extensions-list {
@@ -99,7 +132,7 @@
     justify-content: center;
   }
   .extension {
-    background: white;
+    background: var(--element-bg);
     padding: 0.7rem;
     border-radius: 12px;
     display: flex;
@@ -114,31 +147,35 @@
   .extension__name {
     font-size: 1.2rem;
     margin-block: 0.3rem;
+    color: var(--heading-fg);
   }
   .extension__description {
-    color: grey;
+    color: var(--text-fg);
   }
   .buttons {
     display: flex;
     justify-content: space-between;
   }
   .remove-btn {
-    background: white;
+    background: var(--element-bg);
+    color: var(--heading-fg);
+    font-family: inherit;
+    font-weight: 500;
     border-radius: 20px;
     padding: 0.5rem 0.7rem;
-    border: 1px solid grey;
+    border: 1px solid var(--button-border);
     cursor: pointer;
   }
   .remove-btn:hover {
-    background: red;
-    color: white;
+    background: var(--red-hover);
+    color: var(--white-hover);
   }
   /* The switch - the box around the slider */
   .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    width: 40px;
+    height: 22px;
   }
 
   /* Hide default HTML checkbox */
@@ -156,7 +193,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: var(--toggle-grey);
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
@@ -164,27 +201,27 @@
   .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
+    height: 16px;
+    width: 16px;
     left: 4px;
-    bottom: 4px;
-    background-color: white;
+    bottom: 3px;
+    background-color: var(--toggle-white);
     -webkit-transition: 0.4s;
     transition: 0.4s;
   }
 
   input:checked + .slider {
-    background-color: red;
+    background-color: var(--red);
   }
 
   input:focus + .slider {
-    box-shadow: 0 0 1px red;
+    box-shadow: 0 0 1px var(--red);
   }
 
   input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(17px);
+    -ms-transform: translateX(17px);
+    transform: translateX(17px);
   }
 
   /* Rounded sliders */
