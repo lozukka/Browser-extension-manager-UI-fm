@@ -1,4 +1,5 @@
 //------EXTENSIONS LIST----------
+
 const extensionList = document.getElementById("extensions-list");
 let extensions = [];
 
@@ -46,17 +47,41 @@ function renderExtension(logo, name, description, isActive) {
 }
 
 window.addEventListener("load", getExtensions);
-//------EXTENSIONS FILTER----------
+
+//------USER EDITS EXTENSIONS LIST----------
+
+//eventlistener for toggle switcher
+//eventlistener to remove button
+//find corresponding extension element
+//switch isActive to false
+
+document.addEventListener("click", (e) => {
+  const removeButton = e.target.closest(".remove-btn");
+  const toggleSwitcher = e.target.closest(".slider");
+  //if (!removeButton) return;
+  if (removeButton) {
+    const removeExtension = removeButton.closest(".extension");
+    removeExtension.remove();
+  }
+  if (toggleSwitcher) {
+    const switchExtension = toggleSwitcher.closest(".extension");
+    switchExtension.isActive ? true : false;
+    console.log(switchExtension);
+  }
+});
+
+//-------------EXTENSIONS FILTER-------------------
+
 const allBtn = document.getElementById("all-btn");
 const activeBtn = document.getElementById("active-btn");
 const inactiveBtn = document.getElementById("inactive-btn");
 
-allBtn.addEventListener("click", (event) => {
+allBtn.addEventListener("click", () => {
   emptyExtensionList();
   getExtensions();
   setFilter("all");
 });
-activeBtn.addEventListener("click", (event) => {
+activeBtn.addEventListener("click", () => {
   emptyExtensionList();
   extensions.forEach((extension) => {
     const { logo, name, description, isActive } = extension;
@@ -66,7 +91,7 @@ activeBtn.addEventListener("click", (event) => {
   });
   setFilter("active");
 });
-inactiveBtn.addEventListener("click", (event) => {
+inactiveBtn.addEventListener("click", () => {
   emptyExtensionList();
   extensions.forEach((extension) => {
     const { logo, name, description, isActive } = extension;
@@ -76,6 +101,7 @@ inactiveBtn.addEventListener("click", (event) => {
   });
   setFilter("inactive");
 });
+
 function setFilter(state) {
   switch (state) {
     case "all":
@@ -107,7 +133,9 @@ function removeIsActiveClass(element) {
 function emptyExtensionList() {
   extensionList.innerHTML = "";
 }
+
 //--------THEME SWITCHER-----------
+
 /**
  * Utility function to calculate the current theme setting.
  * Look for a local storage value.
