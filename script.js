@@ -95,9 +95,11 @@ function updateButton({ buttonEl, isDark }) {
             <clipPath id="a"><path fill="#fff" d="M0 0h22v22H0z" /></clipPath>
           </defs>
         </svg>`;
-  // use an aria-label if you are omitting text on the button
-  // and using a sun/moon icon, for example
-  buttonEl.setAttribute("aria-label", newCta);
+  const ariaLabel = isDark
+    ? "Sun icon, switch to light theme"
+    : "Moon icon, switch to dark theme";
+
+  buttonEl.setAttribute("aria-label", ariaLabel);
   buttonEl.innerHTML = newCta;
 }
 
