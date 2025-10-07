@@ -51,9 +51,8 @@ window.addEventListener("load", getExtensions);
 //------USER EDITS EXTENSIONS LIST----------
 
 //eventlistener for toggle switcher
-//eventlistener to remove button
 //find corresponding extension element
-//switch isActive to false
+//switch isActive to false->true or true->false
 
 document.addEventListener("click", (e) => {
   const removeButton = e.target.closest(".remove-btn");
